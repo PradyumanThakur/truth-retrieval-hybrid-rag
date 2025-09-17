@@ -1,4 +1,5 @@
 # ==== Python / FastAPI backend ====
+venv/
 .venv/
 __pycache__/
 *.py[cod]
