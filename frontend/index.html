@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="design.css">
+  <script src="script.js" defer></script>
+  <title>Ramayana Fact Checker</title>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      📜 Ramayana Fact Checker
+      <button id="darkModeToggle">🌙</button>
+    </div>
+    <div id="chatBox" class="chat-box"></div>
+    <div class="chat-input">
+      <input id="userInput" type="text" placeholder="Enter your claim..." />
+      <button id="sendBtn">Verify</button>
+    </div>
+    <div class="topn-control">
+      <label for="topnValue">📜 Top Relevant Verses:</label>
+      <button id="decrementBtn">−</button>
+      <span id="topnValue">5</span>
+      <button id="incrementBtn">+</button>
+    </div>
+  </div>
+</body>
+</html>
