@@ -10,10 +10,24 @@ from models.load_models import load_all_models
 from utlis.logger import log_result
 from utlis.postprocessing import extract_ref, explanation_processing
 
-models = load_all_models()
-chunks = models["verses"]
+# ---------- Singleton model access ----------
+# Module-level globals
+_models = None
+_chunks = None
+
+def get_models():
+    """Lazy-load models singleton for retrieval or reranker."""
+    global _models, _chunks
+    if _models is None:
+        from models.load_models import load_all_models
+        _models = load_all_models()
+        _chunks = _models["verses"]
+    return _models, _chunks
+
 
 def main(claim: str, top_n: int = 10):
+    models, chunks = get_models()
+
     query = normalize(claim)
     faiss_ranks = get_faiss_ranks(query, top_k=100, sem_threshold=0.80)
     bm25_ranks = get_bm25_ranks(query, top_k=100)
@@ -25,7 +39,7 @@ def main(claim: str, top_n: int = 10):
     verses = retriever.retrieve(top_n=100)
 
     top_verses = rerank_results(query, verses, top_k=top_n)
-    
+    print(top_verses)
     # Use generator to get stream and track full output
     print("[+] Verifying claim against verses using LLM...")
 

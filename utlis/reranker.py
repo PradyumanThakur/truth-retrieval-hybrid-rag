@@ -1,8 +1,15 @@
 import numpy as np
-from models.load_models import models
+from models.load_models import load_all_models
 
-# Load model
-rank_model = models["cross_encoder_model"]
+# ---------- Singleton access ----------
+_models = None
+
+def get_cross_encoder():
+    """Return singleton CrossEncoder model."""
+    global _models
+    if _models is None:
+        _models = load_all_models()
+    return _models["cross_encoder_model"]
 
 def rerank_results(query: str, retrieved_verses: list, top_k: int = 10):
     """
@@ -16,6 +23,9 @@ def rerank_results(query: str, retrieved_verses: list, top_k: int = 10):
     Returns:
         Reranked list of verse dicts.
     """
+
+    rank_model = get_cross_encoder()
+
     if not retrieved_verses:
         return []
 

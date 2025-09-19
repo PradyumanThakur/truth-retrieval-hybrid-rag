@@ -4,17 +4,26 @@ from nltk.tokenize import word_tokenize
 from models.load_models import load_all_models
 
 
-# Load once from central registry
-models = load_all_models()
-embedder = models["sentence_model"]
-faiss_index = models["faiss_index"]
-bm25 = models["bm25_model"]
-chunks = models["verses"]  # List of dicts with 'id', 'text', 'meta'
+# ---------- Singleton models ----------
+_models = None
+_chunks = None
+
+def get_models():
+    """Lazy-load models singleton for retrieval."""
+    global _models, _chunks
+    if _models is None:
+        _models = load_all_models()
+        _chunks = _models["verses"]
+    return _models, _chunks
 
 # --------------- Hybrid Retrival Engine - RAG (Retrival-Augmented Generation) ---------------- #
 
 # ---------- 1. Dense (FAISS) Retrieval ----------
 def get_faiss_ranks(query: str, top_k: int=10, sem_threshold=0.8):
+    models, chunks = get_models()
+    embedder = models["sentence_model"]
+    faiss_index = models["faiss_index"]
+
     query_emb = embedder.encode([query], normalize_embeddings=True)
     D, I = faiss_index.search(query_emb, top_k)
     
@@ -26,6 +35,9 @@ def get_faiss_ranks(query: str, top_k: int=10, sem_threshold=0.8):
 
 # ---------- 2. Sparse (BM25) Retrieval ----------
 def get_bm25_ranks(query: str, top_k: int=10):
+    models, chunks = get_models()
+    bm25 = models["bm25_model"]
+
     query_tokens = word_tokenize(query)
     scores = bm25.get_scores(query_tokens)
 
@@ -48,6 +60,7 @@ class EnsembleRetriever:
         """
         self.retrievers = retrievers
         self.k_rrf = k_rrf
+        _, self.chunks = get_models()
 
     def _rrf(self, rank):
         return 1 / (self.k_rrf + rank)
@@ -62,12 +75,13 @@ class EnsembleRetriever:
 
         results = []
         for idx, score in ranked:
+            doc = self.chunks[idx]
             results.append({
                 "idx": idx,
-                "id": chunks[idx]["id"],
-                "book": chunks[idx]["meta"]["book"],
-                "chapter": chunks[idx]["meta"]["chapter"],
-                "text": chunks[idx]["text"],
+                "id": doc["id"],
+                "book": doc["meta"]["book"],
+                "chapter": doc["meta"]["chapter"],
+                "text": doc["text"],
                 "rrf_score": score
             })
         return results
