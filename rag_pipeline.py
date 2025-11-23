@@ -6,7 +6,6 @@ from utlis.reranker import rerank_results
 from utlis.preprocessing import normalize
 from utlis.retrieval import get_faiss_ranks, get_bm25_ranks, EnsembleRetriever
 from utlis.llm_verifier import generate_stream
-from models.load_models import load_all_models
 from utlis.logger import log_result
 from utlis.postprocessing import extract_ref, explanation_processing
 

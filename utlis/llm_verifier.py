@@ -1,11 +1,8 @@
-import re
-import json
-
 from models.load_models import load_all_models
 
 models = load_all_models()
 
-llm = models["mistral_llm"]
+llm = models["Llama_llm"]
 chunks = models["verses"]
 
 def build_prompt(claim, verses):
@@ -30,7 +27,7 @@ def build_prompt(claim, verses):
         Now return the JSON object only.  
         [/INST]
     """
-    prompt_llama_3 = f"""
+    prompt_llama = f"""
         <|system|>
         You are a scholarly expert in the Valmiki Ramayana.  
         Your task is to fact-check the given CLAIM using the provided VERSES and return a valid JSON object.  
@@ -53,7 +50,7 @@ def build_prompt(claim, verses):
         Now return the JSON object only.
         </|user|>
 """
-    return prompt_llama_3
+    return prompt_llama
 
 # Streaming generator
 def generate_stream(claim, verses):
@@ -63,7 +60,7 @@ def generate_stream(claim, verses):
         max_tokens=256, 
         temperature=0.2, 
         stream=True, 
-        stop=["</s>", "[/INST]", "</|user|>", "</|system|>"]
+        stop=["</|user|>", "</|system|>"] #"</s>", "[/INST]"
     )
 
     for output in stream: # enables token streaming

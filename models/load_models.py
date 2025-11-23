@@ -62,12 +62,13 @@ def load_cross_encoder():
     return CrossEncoder("cross-encoder/ms-marco-MiniLM-L6-v2")
 
 
-# ---------- 6. Llama.cpp (Mistral) ----------
+# ---------- 6. Llama.cpp (Llama-3) ----------
 def load_llama_cpp_model(repo_id, filename, local_dir="models", ctx_size=2048):
     """
     Downloads a GGUF model if not present locally, then loads it with llama.cpp.
     Uses GPU if available, else CPU.
     """
+    print("[+] Loading Meta-Llama-3...")
     os.makedirs(local_dir, exist_ok=True)
     local_path = Path(local_dir) / filename
 
@@ -123,9 +124,9 @@ def load_all_models():
     verses = load_verses()
     cross_encoder_model = load_cross_encoder()
 
-    repo_id = "TheBloke/Mistral-7B-Instruct-v0.2-GGUF"
+    repo_id = "QuantFactory/Meta-Llama-3-8B-Instruct-GGUF" #"TheBloke/Mistral-7B-Instruct-v0.2-GGUF"
     filename = "Meta-Llama-3-8B-Instruct.Q4_K_M.gguf"
-    mistral_llm = load_llama_cpp_model(repo_id, filename)
+    Llama_llm = load_llama_cpp_model(repo_id, filename)
 
     _models = {
         "sentence_model": sentence_model,
@@ -133,6 +134,6 @@ def load_all_models():
         "bm25_model": bm25_model,
         "verses": verses,
         "cross_encoder_model": cross_encoder_model,
-        "mistral_llm": mistral_llm,
+        "Llama_llm": Llama_llm,
     }
     return _models
