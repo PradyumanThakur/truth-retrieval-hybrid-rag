@@ -38,7 +38,7 @@ def main(claim: str, top_n: int = 10):
     verses = retriever.retrieve(top_n=100)
 
     top_verses = rerank_results(query, verses, top_k=top_n)
-    print(top_verses)
+
     # Use generator to get stream and track full output
     print("[+] Verifying claim against verses using LLM...")
 

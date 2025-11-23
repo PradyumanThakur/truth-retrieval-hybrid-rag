@@ -1,0 +1,11 @@
+sentence-transformers
+faiss-cpu
+huggingface-hub
+torch
+nltk
+numpy
+pandas
+fastapi
+uvicorn
+pydantic
+rank-bm25

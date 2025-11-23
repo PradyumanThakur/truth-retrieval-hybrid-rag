@@ -1,0 +1,21 @@
+ID,Statement,Truth,Reference
+1,Rama is the eldest son of King Dasharatha.,TRUE,"Bala Kanda, Sarga 18, Shloka 24"
+2,Sita was discovered by King Janaka in a furrow during ploughing and was later adopted by him.,TRUE,"Bala Kanda, Sarga 66, Shloka 14"
+3,"Lakshmana, Rama’s devoted younger brother, accompanied him into exile.",TRUE,"Ayodhya Kanda, Sarga 31, Shloka 30"
+4,"Bharata, another brother of Rama, revered him and ruled as regent in his absence.",TRUE,"Ayodhya Kanda, Sarga 115, Shloka 22"
+5,Hanuman was the best minister of Sugreeva.,TRUE,"Kishkindha Kanda, Sarga 6, Shloka 2"
+6,"Ravana, the demon king of Lanka, abducted Sita, setting in motion the events of the epic.",TRUE,"Aranya Kanda, Sarga 49, Shloka 20"
+7,"On seeing Hanuman, Sita lost her consciousness for a long time.",TRUE,"Sundara Kanda, Sarga 32, Shloka 8"
+8,"Nila, a general of the monkey army, was rendered unconscious by a mystic arrow shot by Ravana.",TRUE,"Yuddha Kanda, Sarga 59, Shloka 89"
+9,Nala constructed a bridge for Rama to cross over to Lanka.,TRUE,"Yuddha Kanda, Sarga 27, Shloka 61"
+10,"The sage Vishwamitra mentored Rama during his early life, imparting knowledge of warfare and ritual.",TRUE,"Bala Kanda, Sarga 22"
+11,Sita herself built the bridge to Lanka with the help of the monkey army.,FALSE,
+12,Lakshmana was a disciple of Ravana and learned warfare techniques from him.,FALSE,
+13,Bharata was originally from Lanka and was later adopted by King Dasharatha.,FALSE,
+14,"After meeting Sita, Hanuman lost his ability to speak entirely.",FALSE,
+15,Ravana is depicted solely as a peaceful poet who never engaged in any battles.,FALSE,
+16,Rama’s exile lasted only one year rather than the traditionally recounted fourteen years.,FALSE,
+17,Sita and Rama were married in Lanka with Ravana acting as the priest for their wedding.,FALSE,
+18,Lakshmana is not mentioned at all in the Valmiki Ramayana.,FALSE,
+19,Bharata built a grand palace in Lanka following Rama’s victory over Ravana.,FALSE,
+20,Hanuman was the son of Ravana.,FALSE,
