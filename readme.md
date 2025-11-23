@@ -239,5 +239,10 @@ A simple UI for entering claims and viewing results.
 
 ---
 
-# Author
-Pradyuman Thakur
+# 👤 Author  
+[Pradyuman Thakur](https://www.linkedin.com/in/pradyuman-thakur-955238212/)
+
+---
+
+# 📜 License  
+MIT License
