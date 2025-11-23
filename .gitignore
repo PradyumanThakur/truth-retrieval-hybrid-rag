@@ -10,6 +10,6 @@ __pycache__/
 # logs/
 
 # FAISS / BM25 / Embeddings / Models
-#*.faiss
-#*.pkl
+*.faiss
+*.pkl
 #*.gguf
