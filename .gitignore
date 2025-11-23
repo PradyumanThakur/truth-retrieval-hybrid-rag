@@ -9,7 +9,21 @@ __pycache__/
 *.pyo
 # logs/
 
-# FAISS / BM25 / Embeddings / Models
-#*.faiss
-#*.pkl
-*.gguf
+# Logs
+*.log
+
+# ==== FAISS / Embeddings / Index files ====
+# *.faiss
+# *.index
+# *.pkl
+# *.npy
+
+
+# ==== Models (Llama.cpp GGUF etc.) ====
+models/*.gguf
+
+# Cache files
+*.cache
+
+# ==== VS Code ====
+.vscode/
