@@ -92,10 +92,11 @@ We combine **semantic** and **lexical** retrieval for high recall & precision.
 
 Combines dense + sparse rankings using:
 
-$$ {RRF}(d) = \sum_{i=1}^{n} \frac{1}{k + \text{rank}_i(d)} $$
-$k = 60$ (tunable hyper-parameter)
+$$RRF(d) = \sum_{i=1}^{n} \frac{1}{k + rank_i(d)}$$
 
-![alt text](image.png)
+where $$k = 60$$ (tunable hyper-parameter)
+
+![alt text](fig/image.png)
 
 # Cross-Encoder Re-Ranking
 
